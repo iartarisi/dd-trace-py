@@ -664,6 +664,17 @@ jobs:
       - *persist_to_workspace_step
       - *save_cache_step
 
+  webapp2:
+    docker:
+      - *test_runner
+    resource_class: *resource_class
+    steps:
+      - checkout
+      - *restore_cache_step
+      - run: scripts/run-tox-scenario '^webapp2_contrib-'
+      - *persist_to_workspace_step
+      - *save_cache_step
+
   unit_tests:
     docker:
       - *test_runner
